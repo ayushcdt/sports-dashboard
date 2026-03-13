@@ -1,5 +1,5 @@
 // Sport types supported by the app
-export type Sport = 'soccer' | 'basketball' | 'motorsport' | 'tennis';
+export type Sport = 'soccer' | 'basketball' | 'motorsport';
 
 // Event status
 export type EventStatus = 'upcoming' | 'live' | 'completed';

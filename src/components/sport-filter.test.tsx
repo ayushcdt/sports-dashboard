@@ -14,7 +14,6 @@ describe('SportFilter', () => {
     expect(screen.getByRole('tab', { name: 'Soccer' })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: 'Basketball' })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: 'Motorsport' })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: 'Tennis' })).toBeInTheDocument();
   });
 
   it('shows selected tab as active', () => {
@@ -55,6 +54,6 @@ describe('SportFilter', () => {
     render(<SportFilter selected="all" onSelect={onSelect} />);
 
     const tabs = screen.getAllByRole('tab');
-    expect(tabs).toHaveLength(5); // All + 4 sports
+    expect(tabs).toHaveLength(4); // All + 3 sports
   });
 });

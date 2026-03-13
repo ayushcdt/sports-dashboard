@@ -1,0 +1,9 @@
+{
+  "hosting": {
+    "site": "sports-dashboard-site",
+    "source": ".",
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
+  }
+}
