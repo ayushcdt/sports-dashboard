@@ -251,7 +251,13 @@ export async function getAllUpcomingEvents(sport?: Sport): Promise<SportEvent[]>
     throw new ApiError('Failed to fetch events from all leagues', undefined, 'ALL_FAILED');
   }
 
-  return events.sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+  // Filter to only show truly upcoming events (not completed/past)
+  const now = new Date();
+  const upcomingOnly = events.filter(
+    (event) => event.status === 'upcoming' && event.startTime > now
+  );
+
+  return upcomingOnly.sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
 }
 
 // Fetch all past events across all leagues with error aggregation
@@ -279,7 +285,10 @@ export async function getAllPastEvents(sport?: Sport): Promise<SportEvent[]> {
     throw new ApiError('Failed to fetch events from all leagues', undefined, 'ALL_FAILED');
   }
 
-  return events.sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
+  // Filter to only show completed events
+  const completedOnly = events.filter((event) => event.status === 'completed');
+
+  return completedOnly.sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
 }
 
 // Fetch event details by ID
